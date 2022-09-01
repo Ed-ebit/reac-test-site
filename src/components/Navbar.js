@@ -1,11 +1,11 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {Link} from "react-router-dom";
 import './Navbar.css';
 import{HeatMapOutlined, DoubleRightOutlined, DoubleLeftOutlined} from "@ant-design/icons";
 import { Button } from "./Button";
 
 function Navbar() {
-    const [click, setClick] = useState(false)
+    const [click, setClick] = useState(false);
     const[button, setButton] = useState(true);
 
     const handleClick = () => setClick(!click);
@@ -18,6 +18,9 @@ const showButton = () => {
         setButton(true)
     }
 };
+useEffect (() => {
+    showButton();
+}, []);
 
 window.addEventListener('resize', showButton);
 
@@ -25,7 +28,7 @@ window.addEventListener('resize', showButton);
         <> {/*what are Fragments for? */}
             <nav className="navbar">
                 <div className="navbar-container">
-                    <Link to="/" className="navbar-logo">
+                    <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
                         VoTe <HeatMapOutlined style={{color: "green"}} />
                     </Link>
                     <div className="menu-icon" onClick={handleClick}>
